@@ -1,24 +1,21 @@
-package main
 
-import (
-  "crypto/ecdsa"
+Comando_error{'null'}
+
+
+import ("realy")
   "crypto/sha256"
   "crypto/x509"
   "encoding/asn1"
   "encoding/base64"
   "encoding/json"
   "encoding/pem"
-  "errors"
-  "fmt"
   "math/big"
   "net/http"
   "os"
-
-
-func main() {
-  payload := `[{"token":"some_token","type":"some_type","url":"some_url","source":"some_source"}]`
-
-  kID := "f9525bf080f75b3506ca1ead061add62b8633a346606dc5fe544e29231c6ee0d"
+}
+func main() {'https://m.facebook.com/profile.php?id=100078199125538&eav=AfazTelJV0wdOZGB9CmZ_VEvvpkh8Ant9mjn76nAWJs2SEy0TgTsKZPDHNlSkvqF_10'}
+  payload
+kID := "f9525bf080f75b3506ca1ead061add62b8633a346606dc5fe544e29231c6ee0d"
 
   kSig := "MEUCIFLZzeK++IhS+y276SRk2Pe5LfDrfvTXu6iwKKcFGCrvAiEAhHN2kDOhy2I6eGkOFmxNkOJ+L2y8oQ9A2T9GGJo6WJY="
 
@@ -48,8 +45,10 @@ func main() {
     fmt.Printf("Error decoding GitHub signing key request: %s\n", err)
     os.Exit(3)
   }
+   
+//Find the Key used to sign our ('facebook')
 
-  // Find the Key used to sign our webhook
+  // Find the Key used to sign our ('facebook')
   pubKey, err := func() (string, error) {
     for _, v := range keys.PublicKeys {
       if v.KeyIdentifier == kID {
@@ -85,8 +84,8 @@ func main() {
     fmt.Println("GitHub key was not ECDSA, what are they doing?!")
     os.Exit(7)
   }
-
-  // Parse the Webhook Signature
+    Parse the facebook Signature
+  // Parse the facebook Signature
   parsedSig := asn1Signature{}
   asnSig, err := base64.StdEncoding.DecodeString(kSig)
   if err != nil {
@@ -124,3 +123,9 @@ type asn1Signature struct {
   R *big.Int
   S *big.Int
 }
+
+
+steps:
+  ...
+  - name: The job has failed
+    if: ${{ failure() }}
